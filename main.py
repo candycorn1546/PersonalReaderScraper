@@ -52,7 +52,7 @@ def process_page_content(args):
 
 def main():
     start_time = time.time()  # start the timer
-    urls = [f"https://xyuzhaiwu3.com/sort8/{page}/" for page in range(1, 50)]
+    urls = [f"https://xyuzhaiwu3.com/sort8/{page}/" for page in range(41, 51)]
     existing_urls = set()  # set for existing URLs
     try:
         existing_novels = pd.read_csv('Novel.csv')  # read the existing novels
@@ -65,7 +65,7 @@ def main():
     new_novels = []  # store the new novels
     if new_links:
         translator = Translator()
-        with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             page_contents = executor.map(fetch_page_content,
                                          [f"https://www.xyuzhaiwu3.com/read/{link}/" for link in new_links])
             for result in executor.map(process_page_content, page_contents):
@@ -74,6 +74,7 @@ def main():
                     if url in existing_urls:
                         print(f"Skipping {url}")
                         continue
+                    time.sleep(1)
                     if title:
                         try:
                             translated_result = translator.translate(title, src='zh-cn', dest='en')
@@ -117,7 +118,7 @@ def main():
             if url in new_novels_url: # if the url is in the set
                 print(f"Skipping {title}")
                 continue
-            new_novels_data.append({'Title': title, 'Synopsis': synopsis, 'URL': url}) # append the data
+            new_novels_data.append({'Title': title, 'Synopsis': synopsis, 'URL': url})
 
         new_novels_df = pd.DataFrame(new_novels_data) # create a DataFrame
 
@@ -129,6 +130,8 @@ def main():
     end_time = time.time()  # end the timer
     execution_time = end_time - start_time
     print(f"Execution time: {execution_time} seconds")  # print the execution time
+    total_novels_added = len(new_novels_data)
+    print(f"{total_novels_added} new novels added to '{excel_filename}'.")
 
 
 if __name__ == '__main__':  # run the main function
