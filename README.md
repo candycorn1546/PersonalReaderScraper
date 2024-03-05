@@ -8,4 +8,4 @@
   - The program takes approximately 20-40 seconds per page to scan the titles, eliminate all the ones that contain words I'm not interested in, parse the synopsis, and add the novel to sheets.
   
 - ### Disclaimer
-    This project is for education purposes only. Do not use this application maliciously; be aware of what you are doing before executing or modifying the program. The website is purposely omitted for copyright/personal reasons purpose. The program was design to help save me time on having to go thrhough each pages indivudually. There is no malicious intent behind the scraping.
+    This project is for personal purposes only. Do not use this application maliciously; be aware of your actions before executing or modifying the program. The website is purposely omitted for copyright/personal reasons purpose. The program was design to help save me time on having to go thrhough each pages indivudually. There is no malicious intent behind the scraping.
