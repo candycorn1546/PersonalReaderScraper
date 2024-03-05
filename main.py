@@ -52,7 +52,7 @@ def process_page_content(args):
 
 def main():
     start_time = time.time()  # start the timer
-    urls = [f"https://xyuzhaiwu3.com/sort8/{page}/" for page in range(41, 51)]
+    urls = [f"https://[website_hidden].com/sort8/{page}/" for page in range(41, 51)]
     existing_urls = set()  # set for existing URLs
     try:
         existing_novels = pd.read_csv('Novel.csv')  # read the existing novels
@@ -67,7 +67,7 @@ def main():
         translator = Translator()
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             page_contents = executor.map(fetch_page_content,
-                                         [f"https://www.xyuzhaiwu3.com/read/{link}/" for link in new_links])
+                                         [f"https://www.[website_hidden].com/read/{link}/" for link in new_links])
             for result in executor.map(process_page_content, page_contents):
                 if result:
                     title, synopsis, url = result
@@ -91,14 +91,7 @@ def main():
                             print(f"Error translating synopsis for title: {title}")
                             print(e)
                             continue
-                    words_to_search = ['nph', 'NP', 'quick wear', 'gl', '1v2', '2v1', 'cheating', 'Short', 'Collection',
-                                       'travel', 'fodder', 'futa', 'lily', 'Orthopedic', 'abo', 'wolves', 'father',
-                                       'mother', 'counterattack',
-                                       'rebirth', 'reincarnation', 'transmigration', 'western', 'forced', 'vampire',
-                                       'demon', 'ghost', 'zombie',
-                                       'werewolf', 'werewolves', 'witch,', 'in law', 'non', 'Omega', 'Alpha', 'Beta',
-                                       'Korean', 'Japanese', 'fast wearing', 'cat', 'incest', 'taboo',
-                                       'taboos', 'One piece','3P','tentacle','Brothers','teacher','Orthopedics']
+                    words_to_search = ['words_hidden']
                     pattern = r'\b(?:' + '|'.join(words_to_search) + r')\b'
                     if re.search(pattern, translated_title, flags=re.IGNORECASE) is None:
                         new_novels.append((translated_title, translated_synopsis_text, url))
