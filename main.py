@@ -52,7 +52,7 @@ def process_page_content(args):
 
 def main():
     start_time = time.time()  # start the timer
-    urls = [f"https://[website_hidden].com/sort8/{page}/" for page in range(41, 51)]
+    urls = [f"https://[website_hidden].com/sort8/{page}/" for page in range(1, 650)]
     existing_urls = set()  # set for existing URLs
     try:
         existing_novels = pd.read_csv('Novel.csv')  # read the existing novels
