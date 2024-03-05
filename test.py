@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from googletrans import Translator
 
-url = 'https://www.xyuzhaiwu3.com/read/68723/'
+url = 'https://www.[website_hidden].com/read/68723/'
 result = requests.get(url)  # get request
 
 if result.status_code == 200:
